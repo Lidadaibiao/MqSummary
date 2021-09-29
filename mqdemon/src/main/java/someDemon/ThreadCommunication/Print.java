@@ -61,7 +61,7 @@ public class Print {
                 //操作
                 System.out.println(Thread.currentThread().getName()+"------>"+(c++));
                 //改变修饰符
-                flag = false;
+                flag = true;
                 //通知
                 condition.signalAll();
             }catch (Exception e){
@@ -80,7 +80,7 @@ public class Print {
                 System.out.println(Thread.currentThread().getName()+"---->"+(number++));
                 System.out.println(Thread.currentThread().getName()+"---->"+(number++));
                 //改变标识符
-                flag = true;
+                flag = false;
                 //通知其他线程
                 condition.signalAll();
             }catch (Exception e){

@@ -1,5 +1,4 @@
 
 # MqSummary
 
-this is a litter demo;
-if you see:
+ Contains message queue rabbitMQ and some simple threading glitches
