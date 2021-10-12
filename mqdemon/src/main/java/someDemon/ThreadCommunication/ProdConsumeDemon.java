@@ -2,7 +2,7 @@ package someDemon.ThreadCommunication;
 
 /**
  * @author dadaibiaoLi
- * @Desc   生产者消费者模式的一个复习
+ * @Desc 生产者消费者模式的一个复习
  * 两个线程，一个线程打印1-52，另一个打印字母A-Z打印顺序为12A34B...5152Z,
  * 要求用线程间通信
  * 步骤：
@@ -12,17 +12,17 @@ package someDemon.ThreadCommunication;
  */
 public class ProdConsumeDemon {
     public static void main(String[] args) {
-        Print print  = new Print();
-        new Thread(()->{
+        Print print = new Print();
+        new Thread(() -> {
             for (int i = 0; i < 26; i++) {
                 print.printZIMU();
             }
-        },"字母").start();
+        }, "字母").start();
 
-        new Thread(()->{
+        new Thread(() -> {
             for (int i = 0; i < 26; i++) {
                 print.printSHUZI();
             }
-        },"数字").start();
+        }, "数字").start();
     }
 }

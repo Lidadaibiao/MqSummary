@@ -28,8 +28,9 @@ public class Introduce {
         new Thread(futureTask).start();
         System.out.println(futureTask.get());
     }
-    public static void doSomething(){
-        System.out.println(Thread.currentThread().getName()+"\tmain中的doSomeThing");
+
+    public static void doSomething() {
+        System.out.println(Thread.currentThread().getName() + "\tmain中的doSomeThing");
     }
 }
 

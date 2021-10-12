@@ -8,7 +8,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author dadaibiaoLi
- * @Desc  消费者2
+ * @Desc 消费者2
  * @Date 2021/9/26 10:09
  */
 public class Recv2 {
@@ -20,15 +20,15 @@ public class Recv2 {
         //2 创建通道
         Channel channel = connection.createChannel();
         //3 声明队列
-        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
         channel.basicQos(1);
         //        //实现消费方法
-        DefaultConsumer defaultConsumer = new DefaultConsumer(channel){
+        DefaultConsumer defaultConsumer = new DefaultConsumer(channel) {
 
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-                String msg = new String(body,"UTF-8");
+                String msg = new String(body, "UTF-8");
                 System.out.println(" [消费者2] received : " + msg + "!");
             }
         };

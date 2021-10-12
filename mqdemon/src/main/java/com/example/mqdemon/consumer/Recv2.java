@@ -8,7 +8,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author dadaibiaoLi
- * @Desc  rabbtiMq 消息确认机制，默认为自动ACK,如：Recv   Recv2体现手动ACK
+ * @Desc rabbtiMq 消息确认机制，默认为自动ACK,如：Recv   Recv2体现手动ACK
  * @Date 2021/9/24 17:04
  */
 public class Recv2 {
@@ -16,9 +16,9 @@ public class Recv2 {
 
     public static void main(String[] args) throws IOException, TimeoutException {
         //1 : 获取连接信息
-        Connection connection= ConnectionUtil.getConnection();
+        Connection connection = ConnectionUtil.getConnection();
         //2 创建通道
-       Channel channel  = connection.createChannel();
+        Channel channel = connection.createChannel();
         //3 声明（创建）队列
         //参数：String queue, boolean durable, boolean exclusive, boolean autoDelete, Map<String, Object> arguments
         /**
@@ -29,11 +29,11 @@ public class Recv2 {
          * 4、autoDelete 自动删除，队列不再使用时是否自动删除此队列，如果将此参数和exclusive参数设置为true就可以实现临时队列（队列不用了就自动删除）
          * 5、arguments 参数，可以设置一个队列的扩展参数，比如：可设置存活时间
          */
-        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
         //4 实现消费方法
 
-        DefaultConsumer defaultConsumer = new DefaultConsumer(channel){
+        DefaultConsumer defaultConsumer = new DefaultConsumer(channel) {
             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用
 
             /**
@@ -51,12 +51,12 @@ public class Recv2 {
 //                int  i = 1/0;
                 //获取交换机
                 String exchange = envelope.getExchange();
-                System.out.println("exchange:---->"+exchange);
+                System.out.println("exchange:---->" + exchange);
                 //获取消息id，mq在channel中用来标识消息的id，可用于确认消息已接收
                 long deliverTag = envelope.getDeliveryTag();
-                System.out.println("deliverTag:------->"+deliverTag);
+                System.out.println("deliverTag:------->" + deliverTag);
                 //获取body内容
-                String msg = new String(body,"UTF-8");
+                String msg = new String(body, "UTF-8");
                 System.out.println(" [x] received : " + msg + "!");
                 // 手动进行ACK
                 /*
@@ -75,6 +75,6 @@ public class Recv2 {
          * 2、autoAck 自动回复，当消费者接收到消息后要告诉mq消息已接收，如果将此参数设置为tru表示会自动回复mq，如果设置为false要通过编程实现回复
          * 3、callback，消费方法，当消费者接收到消息要执行的方法
          */
-        channel.basicConsume(QUEUE_NAME,false,defaultConsumer);
+        channel.basicConsume(QUEUE_NAME, false, defaultConsumer);
     }
 }

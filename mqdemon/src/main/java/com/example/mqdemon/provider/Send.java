@@ -9,7 +9,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author dadaibiaoLi
- * @Desc  生产者发送消息
+ * @Desc 生产者发送消息
  * @Date 2021/9/24 16:12
  */
 public class Send {
@@ -18,7 +18,7 @@ public class Send {
 
     public static void main(String[] args) throws IOException, TimeoutException {
         //1 获取连接
-        Connection connection  = ConnectionUtil.getConnection();
+        Connection connection = ConnectionUtil.getConnection();
         //2 从连接中建立通道，使用通道才可以完成相关的操作
         Channel channel = connection.createChannel();
         //3 声明（创建）队列
@@ -31,7 +31,7 @@ public class Send {
          * 4、autoDelete 自动删除，队列不再使用时是否自动删除此队列，如果将此参数和exclusive参数设置为true就可以实现临时队列（队列不用了就自动删除）
          * 5、arguments 参数，可以设置一个队列的扩展参数，比如：可设置存活时间
          */
-        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
         //4 消息内容
         String massage = "send one massage by rabbtiMq";
@@ -45,7 +45,7 @@ public class Send {
          * 3、props，消息的属性
          * 4、body，消息内容
          */
-        channel.basicPublish("",QUEUE_NAME,null,massage.getBytes());
+        channel.basicPublish("", QUEUE_NAME, null, massage.getBytes());
         System.out.println(" [x] Sent '" + massage + "'");
         //关闭连接  关闭通道和连接(资源关闭最好用try-catch-finally语句处理)
         channel.close();

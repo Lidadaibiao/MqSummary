@@ -8,13 +8,13 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author dadaibiaoLi
- * @Desc  连接工具类
+ * @Desc 连接工具类
  * @Date 2021/9/24 16:07
  */
 public class ConnectionUtil {
     /**
-     *@Author dadaibiao
-     *@Desc 建立与rabbitmq的连接
+     * @Author dadaibiao
+     * @Desc 建立与rabbitmq的连接
      */
     public static Connection getConnection() throws IOException, TimeoutException {
         //定义连接工厂

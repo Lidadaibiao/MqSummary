@@ -15,42 +15,52 @@ public class SumTwoNumbers {
         ListNode l1 = new ListNode();
         ListNode l2 = new ListNode();
         int i = 0;
-        while (i <=4){
-            l1.val = i+1;
-            l2.val = i+3;
+        while (i <= 4) {
+            l1.val = i + 1;
+            l2.val = i + 3;
             l1 = l1.next;
             l2 = l2.next;
             i++;
         }
-        ListNode l  = addTwoNumbers(l1,l2);
-        while (l!=null){
+        ListNode l = addTwoNumbers(l1, l2);
+        while (l != null) {
             l = l.next;
             System.out.println(l.val);
         }
     }
+
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode root = new ListNode(0);
         ListNode cursor = root;
         int carry = 0;
-        while (l1 !=null||l2 !=null||carry!=0){
-            int l1Val = l1!=null?l1.val:0;
-            int l2Val = l2!=null?l2.val:0;
-            int sumVal = l1Val+l2Val+carry;
-            carry = sumVal/10;
-            ListNode sumNode = new ListNode(sumVal%10);
+        while (l1 != null || l2 != null || carry != 0) {
+            int l1Val = l1 != null ? l1.val : 0;
+            int l2Val = l2 != null ? l2.val : 0;
+            int sumVal = l1Val + l2Val + carry;
+            carry = sumVal / 10;
+            ListNode sumNode = new ListNode(sumVal % 10);
             cursor.next = sumNode;
             cursor = sumNode;
-            if (l1 != null)l1 = l1.next;
-            if (l2 !=null)l2 = l2.next;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
         }
-        return  root.next;
+        return root.next;
     }
 }
 
 class ListNode {
-     int val;
-     ListNode next;
-     ListNode() {}
-     ListNode(int val) { this.val = val; }
-     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- }
+    int val;
+    ListNode next;
+
+    ListNode() {
+    }
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+}

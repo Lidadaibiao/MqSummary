@@ -8,7 +8,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author dadaibiaoLi
- * @Desc  消费者 接收信息
+ * @Desc 消费者 接收信息
  * @Date 2021/9/24 16:34
  */
 public class Recv {
@@ -30,16 +30,17 @@ public class Recv {
          * 4、autoDelete 自动删除，队列不再使用时是否自动删除此队列，如果将此参数和exclusive参数设置为true就可以实现临时队列（队列不用了就自动删除）
          * 5、arguments 参数，可以设置一个队列的扩展参数，比如：可设置存活时间
          */
-        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         //4 实现消费方法
-        DeliverCallback deliverCallback = (consumerTag,delivery)->{
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             //自动消费模拟异常
-            int i = 1/0;
-            String massage = new String(delivery.getBody(),"UTF-8");
+            int i = 1 / 0;
+            String massage = new String(delivery.getBody(), "UTF-8");
             System.out.println(" [x] Received '" + massage + "'");
         };
 
-        channel.basicConsume(QUEUE_NAME,true,deliverCallback,consumerTag->{});
+        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
+        });
 
 //         DefaultConsumer defaultConsumer = new DefaultConsumer(channel){
 //             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用

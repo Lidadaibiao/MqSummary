@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * @author dadaibiaoLi
- * @Desc  给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度
+ * @Desc 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度
  * @Date 2021/10/9 8:51
  */
 public class lengthOfLongestSubstring {
@@ -13,7 +13,8 @@ public class lengthOfLongestSubstring {
         System.out.println(Math.max(3, 3));
         System.out.println(function("abfabcdefg"));
     }
-    public static  int function(String s){
+
+    public static int function(String s) {
 //        //先记录上一次字符出现的位置，搞一个数组记录
 //        int[] last = new int[128];
 //        for (int i = 0; i < 128; i++) {
