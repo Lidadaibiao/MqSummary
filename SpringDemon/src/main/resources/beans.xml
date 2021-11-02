@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="hellow" class="com.dadaibiao.spring.demon1.pojo.Hello">
+        <property name="name" value="Spring"/>
+    </bean>
+
+    <bean id="user" class="com.dadaibiao.spring.demon1.pojo.User">
+        <property name="name" value="dadaibaio"/>
+    </bean>
+
+    <!--第一种有参构造方法-->
+    <!-- 第一种根据index参数下标设置 -->
+<!--    <bean id="userT" class="com.dadaibiao.spring.demon1.pojo.UserT">-->
+<!--        <constructor-arg index="0" value="DAIBIAO"/>-->
+<!--    </bean>-->
+
+    <!-- 第二种根据参数名字设置 -->
+<!--    <bean id="userT" class="com.dadaibiao.spring.demon1.pojo.UserT">-->
+<!--        <constructor-arg name="name" value="DAIBIAO"/>-->
+<!--    </bean>-->
+
+    <!-- 第三种根据参数类型设置 -->
+    <bean id="userT" class="com.dadaibiao.spring.demon1.pojo.UserT">
+        <constructor-arg type="java.lang.String" value="dadaibiao"/>
+    </bean>
+
+
+
+
+    <!--set注入-->
+    <!--常量注入-->
+    <bean id="student" class="com.dadaibiao.spring.demon1.pojo.Student">
+        <property name="name" value="xiaodaibiao"/>
+    </bean>
+
+
+    <!--Bean注入-->
+    <bean id="addr" class="com.dadaibiao.spring.demon1.pojo.Address">
+        <property name="address" value="深圳"/>
+    </bean>
+    <bean id="student1" class="com.dadaibiao.spring.demon1.pojo.Student">
+        <property name="name" value="student2"/>
+        <property name="address" ref="addr"/>
+    </bean>
+
+
+    <!--数组注入  List注入   Map注入 set注入 Null注入  Properties注入-->
+    <bean id="student2" class="com.dadaibiao.spring.demon1.pojo.Student">
+        <property name="name" value="student3"/>
+        <property name="address" ref="addr"/>
+        <property name="books">
+            <array>
+                <value>西游记</value>
+                <value>三国演义</value>
+                <value>水浒传</value>
+                <value>红楼梦</value>
+            </array>
+        </property>
+        <property name="hobbys">
+            <list>
+                <value>学习</value>
+                <value>爬山</value>
+                <value>创新</value>
+            </list>
+        </property>
+        <property name="card">
+            <map>
+                <entry key="工商" value="1111111"/>
+                <entry key="招商" value="222222"/>
+            </map>
+        </property>
+
+        <property name="games">
+            <set>
+                <value>LOL</value>
+                <value>VOV</value>
+                <value>TOT</value>
+            </set>
+        </property>
+        <property name="wife">
+            <null/>
+        </property>
+
+        <property name="info">
+            <props>
+                <prop key="学号">2222111</prop>
+                <prop key="性别">男</prop>
+                <prop key="年龄">22</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--单例模型  signleton-->
+    <bean id="studentsignleton" class="com.dadaibiao.spring.demon1.pojo.Student"  scope="singleton">
+        <property name="name" value="student2"/>
+        <property name="address" ref="addr"/>
+    </bean>
+
+    <!--原型模型  prototype-->
+    <bean id="studentprototype" class="com.dadaibiao.spring.demon1.pojo.Student"  scope="prototype">
+        <property name="name" value="student2"/>
+        <property name="address" ref="addr"/>
+    </bean>
+
+</beans>
