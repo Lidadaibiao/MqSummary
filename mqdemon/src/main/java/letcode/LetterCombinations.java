@@ -16,23 +16,24 @@ import java.util.*;
  */
 public class LetterCombinations {
     public static void main(String[] args) {
-        letterCombinations("23");
+        letterCombinations("2");
     }
     //一个映射表，第二个位置是"abc“,第三个位置是"def"。。。
     //这里也可以用map，用数组可以更节省点内存
-    public static String[] letter_map = {" ","*","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-    public static List<String> res = new ArrayList<>();
+
     public static List<String> letterCombinations(String digits) {
         //注意边界条件
         if(digits==null || digits.length()==0) {
             return new ArrayList<>();
         }
-        iterStr(digits, new StringBuilder(), 0);
+        List<String> res = new ArrayList<>();
+        String[] letter_map = {" ","*","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        iterStr(digits, new StringBuilder(), 0,res,letter_map);
         return res;
     }
 
     //递归函数
-    public static void iterStr(String str, StringBuilder letter, int index) {
+    public static void iterStr(String str, StringBuilder letter, int index,List<String> res,String[] letter_map) {
         //最终输出结果的list
         //递归的终止条件，注意这里的终止条件看上去跟动态演示图有些不同，主要是做了点优化
         //动态图中是每次截取字符串的一部分，"234"，变成"23"，再变成"3"，最后变成""，这样性能不佳
@@ -55,7 +56,7 @@ public class LetterCombinations {
             letter.append(map_string.charAt(i));
             //如果是String类型做拼接效率会比较低
             //iterStr(str, letter+map_string.charAt(i), index+1);
-            iterStr(str, letter, index+1);
+            iterStr(str, letter, index+1,res,letter_map);
             letter.deleteCharAt(letter.length()-1);
         }
     }
